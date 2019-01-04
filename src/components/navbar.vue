@@ -50,6 +50,7 @@ export default {
                 { icon: 'folder', text: 'Mis Proyectos', route: '/projects' },
                 { icon: 'person', text: 'Equipo', route: '/team' },
                 { icon: 'gavel', text: 'Pruebas', route: '/pruebas' },
+                { icon: 'build', text: 'Grid Test', route: '/grid' },
             ],        
         }
     }
