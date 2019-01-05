@@ -1,5 +1,8 @@
 # ninja_vuetify
 
+## Se deben instalar los siguientes paquetes:
+npm install date-fns 
+
 ## Project setup
 ```
 npm install
