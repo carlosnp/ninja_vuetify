@@ -4,17 +4,24 @@
   <h1 class="subheading grey--text">Dashboard Page</h1>
 
   <v-container fluid class="my-5">
-
+    <!-- Botones para ordenar los proyectos segun el nombre o el titulo -->
     <v-layout row wrap class="mb-3">
-      <v-btn small flat color="grey" @click="sortBy('title')">
-        <v-icon left small>folder</v-icon>
-        <span class="caption text-lowercase"> Nombre del Proyecto </span>
-      </v-btn>
-
-      <v-btn small flat color="grey" @click="sortBy('person')">
-        <v-icon left small>person</v-icon>
-        <span class="caption text-lowercase"> Persona </span>
-      </v-btn>
+      <!-- Ordena segun el titulo -->
+      <v-tooltip top>
+        <v-btn small flat color="grey" @click="sortBy('title')" slot="activator">
+          <v-icon left small>folder</v-icon>
+          <span class="caption text-lowercase"> por nombre del Proyecto </span>
+        </v-btn>
+        <span>Ordena los proyectos por nombre</span>
+      </v-tooltip>
+      <!-- Ordena segun el nombre -->
+      <v-tooltip top>
+        <v-btn small flat color="grey" @click="sortBy('person')" slot="activator">
+          <v-icon left small>person</v-icon>
+          <span class="caption text-lowercase"> por Persona </span>
+        </v-btn>
+        <span>Ordena los proyectos por persona</span>
+      </v-tooltip>
     </v-layout>
 
     <!-- card 1 -->
