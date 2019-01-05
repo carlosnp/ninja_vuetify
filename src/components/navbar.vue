@@ -38,6 +38,7 @@
         </v-toolbar>
         <!-- acoordeon de links -->
         <v-navigation-drawer v-model="drawer" app class="success">
+          <!-- Avatar -->
             <v-layout column align-center>
               <v-flex class="mt-5">
                 <v-avatar size="100">
@@ -47,7 +48,12 @@
                   Gouken Ninja
                 </p>
               </v-flex>
+              <!-- Popup -->
+              <v-flex>
+                <Popup></Popup>
+              </v-flex>
             </v-layout>
+            <!-- Lista de links -->
             <v-list>
                 <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
 
@@ -68,18 +74,22 @@
 
 
 <script>
+
+import Popup from './Popup'
+
 export default {
-    data() {
-        return {
-            drawer: false,
-            links: [
-                { icon: 'dashboard', text: 'Dashboard', route: '/' },
-                { icon: 'folder', text: 'Mis Proyectos', route: '/projects' },
-                { icon: 'person', text: 'Equipo', route: '/team' },
-                { icon: 'gavel', text: 'Pruebas', route: '/pruebas' },
-                { icon: 'build', text: 'Grid Test', route: '/grid' },
-            ],        
-        }
-    }
+  components: { Popup },
+  data() {
+      return {
+          drawer: false,
+          links: [
+              { icon: 'dashboard', text: 'Dashboard', route: '/' },
+              { icon: 'folder', text: 'Mis Proyectos', route: '/projects' },
+              { icon: 'person', text: 'Equipo', route: '/team' },
+              { icon: 'gavel', text: 'Pruebas', route: '/pruebas' },
+              { icon: 'build', text: 'Grid Test', route: '/grid' },
+          ],        
+      }
+  }
 }
 </script>
