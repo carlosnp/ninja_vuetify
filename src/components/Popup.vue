@@ -9,24 +9,31 @@
     </v-card-title>
     <!-- Formulario -->
     <v-card-text>
-      <v-form class="px-3">
+      <v-form class="px-3" ref="form">
         <!-- Campo para el titulo -->
         <v-text-field
           name="titulo"
           label="Titulo:"
           id="id" 
           v-model="title"
-          prepend-icon="folder"></v-text-field>
+          prepend-icon="folder" 
+          :rules="inputRules"></v-text-field>
         <!-- Campo para el contenido -->
         <v-textarea 
         name="content" 
         label="Contenido:" 
         v-model="content" 
-        prepend-icon="edit"></v-textarea>
+        prepend-icon="edit" 
+        :rules="inputRules"></v-textarea>
         <!-- Fecha -->
         <v-menu>
           <!-- Campo para seleccionar la Fecha -->
-          <v-text-field :value="formattedDate" slot="activator" label="Fecha" prepend-icon="date_range">
+          <v-text-field 
+          :value="formattedDate" 
+          slot="activator" 
+          label="Fecha" 
+          prepend-icon="date_range" 
+          :rules="inputRules">
           </v-text-field>
           <!-- Calendario -->
           <v-date-picker v-model="due"></v-date-picker>
@@ -52,11 +59,16 @@ export default {
       title: "",
       content: "",
       due: null,
+      inputRules: [
+        v => v.length >= 3 || 'Este campo es requerido'
+      ],
     }
   },
   methods: {
     submit() {
-      console.log(this.title, this.content)
+      if(this.$refs.form.validate()) {
+        console.log(this.title, this.content)
+      }
     }
   },
   computed: {

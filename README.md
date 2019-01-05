@@ -1,6 +1,13 @@
 # ninja_vuetify
 
-## Se deben instalar los siguientes paquetes:
+## Se debe instalar:
+1) Nodejs
+sudo apt install nodejs
+2) NPM
+sudo apt install npm
+3) Vue-cli-3
+npm install @vue/cli -g
+4) Moderna biblioteca de utilidad de fecha de JavaScript
 npm install date-fns 
 
 ## Project setup
