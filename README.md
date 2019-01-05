@@ -9,6 +9,10 @@ sudo apt install npm
 npm install @vue/cli -g
 4) Moderna biblioteca de utilidad de fecha de JavaScript
 npm install date-fns 
+5) para el hosting
+npm install -g firebase-tools
+6) para la base de datos
+npm install firebase
 
 ## Project setup
 ```
