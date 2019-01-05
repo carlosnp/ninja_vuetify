@@ -19,7 +19,7 @@
 
         </v-toolbar>
         <!-- acoorden de links -->
-        <v-navigation-drawer v-model="drawer" app class="primary">
+        <v-navigation-drawer v-model="drawer" app class="success">
             <v-layout column align-center>
               <v-flex class="mt-5">
                 <v-avatar size="100">
