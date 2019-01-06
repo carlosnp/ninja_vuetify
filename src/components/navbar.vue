@@ -1,41 +1,46 @@
 <template>
     <nav>
-        <v-toolbar flat app>
-            
-            <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
-            <!-- Titulo de la barra de navegacion -->
-            <v-toolbar-title class="text-uppercase grey--text">
-                <span class="font-weight-light">
-                    Todo
-                </span>
-                <span>Ninja</span>
-            </v-toolbar-title>
+      <!-- Aviso cuando se suben datos a la base de datos -->
+      <v-snackbar v-model="snackbar" :timeout="4000" top color="info">
+        <span>Awesome!!! Añadiste un nuevo proyecto</span>
+        <v-btn flat color="white" @click="snackbar = false">Cerrar</v-btn>
+      </v-snackbar>
+      <!-- Barra de navegacion -->
+      <v-toolbar flat app>
+        <!-- Icono hamburger -->
+        <v-toolbar-side-icon class="grey--text" @click="drawer = !drawer"></v-toolbar-side-icon>
+        <!-- Titulo de la barra de navegacion -->
+        <v-toolbar-title class="text-uppercase grey--text">
+            <span class="font-weight-light">
+                Todo
+            </span>
+            <span>Ninja</span>
+        </v-toolbar-title>
+        <!-- Espacio entre elementos -->
+        <v-spacer></v-spacer>
+        <!-- Menu -->
+        <v-menu offset-y>
 
-            <v-spacer></v-spacer>
+          <v-btn flat color="grey" slot="activator">
+            <span>Menu</span>
+            <v-icon left>expand_more</v-icon>
+          </v-btn>
+          
+          <v-list>
+            <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+              <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
 
-            <!-- Menu -->
-            <v-menu offset-y>
+        </v-menu>
 
-              <v-btn flat color="grey" slot="activator">
-                <span>Menu</span>
-                <v-icon left>expand_more</v-icon>
-              </v-btn>
-              
-              <v-list>
-                <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
-                  <v-list-tile-title>{{ link.text }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
+        <!-- Boton sign out -->
+        <v-btn flat color="grey">
+            <span>Sign Out</span>
+            <v-icon right >exit_to_app</v-icon>
+        </v-btn>
 
-            </v-menu>
-
-            <!-- Boton sign out -->
-            <v-btn flat color="grey">
-                <span>Sign Out</span>
-                <v-icon right >exit_to_app</v-icon>
-            </v-btn>
-
-        </v-toolbar>
+      </v-toolbar>
         <!-- acoordeon de links -->
         <v-navigation-drawer v-model="drawer" app class="success">
           <!-- Avatar -->
@@ -50,7 +55,7 @@
               </v-flex>
               <!-- Popup -->
               <v-flex>
-                <Popup></Popup>
+                <Popup @projectAdded="snackbar = true"></Popup>
               </v-flex>
             </v-layout>
             <!-- Lista de links -->
@@ -88,7 +93,8 @@ export default {
               { icon: 'person', text: 'Equipo', route: '/team' },
               { icon: 'gavel', text: 'Pruebas', route: '/pruebas' },
               { icon: 'build', text: 'Grid Test', route: '/grid' },
-          ],        
+          ],
+          snackbar: false,        
       }
   }
 }
