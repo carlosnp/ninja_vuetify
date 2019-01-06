@@ -1,5 +1,5 @@
 <template>
-	<v-dialog max-width="600px">
+	<v-dialog max-width="600px" v-model="dialog">
     <!-- Boton -->
 	<v-btn flat slot="activator" class="primary">Nuevo Proyecto</v-btn>
   <!-- tarjeta -->
@@ -41,7 +41,7 @@
 
         <v-spacer></v-spacer>
         <!-- Boton -->
-        <v-btn flat @click="submit" class="primary mx-0 mt-3">Añadir Nuevo Proyecto</v-btn>
+        <v-btn flat @click="submit" class="primary mx-0 mt-3" :loading="loading">Añadir Nuevo Proyecto</v-btn>
       </v-form>
     </v-card-text>
 	</v-card>
@@ -62,11 +62,14 @@ export default {
       inputRules: [
         v => v.length >= 3 || 'Este campo es requerido'
       ],
+      loading: false,
+      dialog: false,
     }
   },
   methods: {
     submit() {
       if(this.$refs.form.validate()) {
+        this.loading = true;
         const project = {
           title: this.title,
           content: this.content,
@@ -75,7 +78,8 @@ export default {
           status: 'ongoing'
         }
         db.collection('projects').add(project).then(() => {
-          console.log('se añadio a la base de datos db')
+          this.loading = false;
+          this.dialog = false;
         })
       }
     }
