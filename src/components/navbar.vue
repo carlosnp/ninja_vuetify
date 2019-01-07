@@ -5,6 +5,13 @@
         <span>Awesome!!! Añadiste un nuevo proyecto</span>
         <v-btn flat color="white" @click="snackbar = false">Cerrar</v-btn>
       </v-snackbar>
+      <!-- Aviso de eliminacion de proyecto -->
+      <div @projectDeleted="snackbarDelete = true">
+      <v-snackbar v-model="snackbar" :timeout="4000" top color="info">
+        <span>Delete!!! Eliminaste un proyecto</span>
+        <v-btn flat color="white" @click="snackbarDelete = false">Cerrar</v-btn>
+      </v-snackbar>
+      </div>
       <!-- Barra de navegacion -->
       <v-toolbar flat app>
         <!-- Icono hamburger -->
@@ -94,7 +101,8 @@ export default {
               { icon: 'gavel', text: 'Pruebas', route: '/pruebas' },
               { icon: 'build', text: 'Grid Test', route: '/grid' },
           ],
-          snackbar: false,        
+          snackbar: false,
+          snackbarDelete: false,        
       }
   }
 }

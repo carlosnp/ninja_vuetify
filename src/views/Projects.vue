@@ -37,9 +37,10 @@ export default {
 	},
 	computed: {
 		myProjects() {
-			return this.projects.filter(project => {
-				return project.person === 'The Net Ninja'
-			})
+      return this.projects
+			// return this.projects.filter(project => {
+			// 	return project.person === 'The Net Ninja'
+			// })
 		}
 	},
   created() {
