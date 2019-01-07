@@ -13,11 +13,20 @@
         <!-- Campo para el titulo -->
         <v-text-field
           name="titulo"
-          label="Titulo:"
+          label="Titulo del Proyecto:"
           id="id" 
           v-model="title"
           prepend-icon="folder" 
-          :rules="inputRules"></v-text-field>
+          :rules="inputRules">
+        </v-text-field>
+        <!-- Campo del autor -->
+        <v-text-field 
+          name="autor" 
+          label="Autor" 
+          v-model="person" 
+          prepend-icon="person" 
+          :rules="inputRules">
+        </v-text-field>
         <!-- Campo para el contenido -->
         <v-textarea 
         name="content" 
@@ -39,6 +48,13 @@
           <v-date-picker v-model="due"></v-date-picker>
         </v-menu>
 
+        <v-select
+          :items="statusItem"
+          label="STATUS" 
+          solo
+          v-model="status"
+        ></v-select>
+
         <v-spacer></v-spacer>
         <!-- Boton -->
         <v-btn flat @click="submit" class="primary mx-0 mt-3" :loading="loading">Añadir Nuevo Proyecto</v-btn>
@@ -58,12 +74,15 @@ export default {
     return {
       title: "",
       content: "",
+      person: "",
+      status:"",
       due: null,
       inputRules: [
         v => v.length >= 3 || 'Este campo es requerido'
       ],
       loading: false,
       dialog: false,
+      statusItem: ['complete', 'ongoing', 'overdue']
     }
   },
   methods: {
@@ -74,8 +93,8 @@ export default {
           title: this.title,
           content: this.content,
           due: format(this.due, 'Do MMM YYYY'),
-          person: 'The Net Ninja',
-          status: 'ongoing'
+          person: this.person,
+          status: this.status
         }
         db.collection('projects').add(project).then(() => {
           this.loading = false;
